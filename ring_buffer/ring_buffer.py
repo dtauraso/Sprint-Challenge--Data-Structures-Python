@@ -92,14 +92,31 @@ class RingBuffer:
 
 
 class ArrayRingBuffer:
+    # items are contiguously stored so all we have to do is modify the value
+
     def __init__(self, capacity):
+        self.capacity = capacity
+        self.current = None
+        self.storage = [-1 for i in range(capacity)]
+
         pass
 
     def append(self, item):
-        pass
+        if self.current is None:
+            self.current = 0
+            self.storage[self.current] = item
+        else:
+            # rotate index
+            self.current = (self.current + 1) % self.capacity
+
+            self.storage[self.current] = item
+        # pass
 
     def get(self):
-        pass
+        
+        # print(self.storage)
+        return [i for i in self.storage if i != -1]
+        # pass
 
 
 # buffer = RingBuffer(5)
