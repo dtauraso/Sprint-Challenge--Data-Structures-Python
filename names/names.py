@@ -29,6 +29,7 @@ def stretch_goal_find(array, new_item):
         else:
             low = mid + 1
 
+    # points to the item that should be pushed to the right if new_item doesn't exist
     # might also work for contains but have no time to test that
     return low
 def stretch_goal_contains(array, new_item):
