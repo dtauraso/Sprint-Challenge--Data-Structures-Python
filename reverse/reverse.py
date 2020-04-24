@@ -44,7 +44,52 @@ class LinkedList:
             current = current.get_next()
         # if we've gotten here, then the target node isn't in our list
         return False
-
+    def print_list(self, head):
+        tracker = head
+        while tracker:
+            if tracker:
+                print(tracker.get_value())
+            else:
+                print(tracker)
+            tracker = tracker.get_next()
     def reverse_list(self, node, prev):
         # You must use recursion for this solution
-        pass
+        # print('printing list')
+        # if prev:
+        #     prev.print_list(prev.head)
+        # node is the head of the old list
+        # prev is the new list
+
+        # if prev is null base case
+            # make a new node with head of node
+            # del head of node
+            # reverse_list(node, prev)
+        # if node is null end case
+            # return prev
+        # else middle cases
+            # add head of node to prev's head
+            # del head of node
+            # reverse_list(node, prev)
+        if node is None and prev is None:
+            return None
+
+        if prev is None:
+            # print(node.value, prev)
+
+            # print(node, prev)
+            new_linked_list = LinkedList()
+            new_linked_list.add_to_head(node.get_value())
+            self.reverse_list(node.get_next(), new_linked_list)
+        elif node is None:
+            # print('last case')
+            # print(node, prev)
+            self.head = prev.head
+            # self.print_list(self.head)
+        else:
+            # print(node.value, prev)
+
+            prev.add_to_head(node.get_value())
+            self.reverse_list(node.get_next(), prev)
+
+        # pass
+
